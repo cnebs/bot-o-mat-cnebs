@@ -1,26 +1,51 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React        from 'react';
+import RobotBuilder from './components/RobotBuilder.jsx';
+import Interface    from './components/Interface.jsx';
+import Container    from 'react-bootstrap/Container';
+import Col          from 'react-bootstrap/Col';
+import Row          from 'react-bootstrap/Row';
 
-function App() {
-  return (
+
+export default class App extends React.Component {
+
+  constructor(props) {
+    super(props);
+      this.state = {
+        roboName: 'default Name',
+        roboType: 'Bipedal'
+     };
+
+    // bind our helpers to this context for prop usage...
+    this.handleNameUpdate = this.handleNameUpdate.bind(this);
+  };
+
+  handleNameUpdate() {
+
+  };
+
+  render() {
+
+    // destructure our state to be easily passed down as props...
+    const { roboName, roboType } = this.state;
+
+    return(
+
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
 
-export default App;
+      <Container>
+
+        <RobotBuilder 
+          handleNameUpdate={this.handleNameUpdate}
+        />
+        <Interface 
+          roboName={roboName}
+          roboType={roboType}
+        />
+
+      </Container>
+
+    </div>
+
+    );
+  };
+}
