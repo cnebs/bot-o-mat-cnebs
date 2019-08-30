@@ -42,10 +42,10 @@ class App extends React.Component {
     } else {
       this.setState({tasks : fiveRandomTasks});
       const robots = this.state.robots;
-      const robot = {};
-      robot.roboName = this.state.roboName;
-      robot.roboType = this.state.roboType;
-      robot.tasks = fiveRandomTasks;
+      const robot = {}; // Build a new robot object, then set its properties before adding it into the state of robots
+        robot.roboName = this.state.roboName;
+        robot.roboType = this.state.roboType;
+        robot.tasks    = fiveRandomTasks;
       robots.push(robot);
       this.setState({robots : robots});
     }
