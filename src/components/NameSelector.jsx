@@ -5,7 +5,11 @@ const NameSelector = props => {
   return (
     <Form.Group controlId="roboForm.nameInput">
       <Form.Label>Robot Name</Form.Label>
-      <Form.Control type="text" placeholder="Roy Batty" />
+      <Form.Control 
+        type="text" 
+        placeholder="Roy Batty"
+        onChange={props.handleNameUpdate} 
+      />
     </Form.Group>
   )
 }

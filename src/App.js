@@ -12,19 +12,28 @@ class App extends React.Component {
     super(props);
       this.state = {
         roboName: 'default Name',
-        roboType: 'Bipedal'
+        roboType: 'Bipedal',
+        build: false
      };
 
     // bind our helpers to this context for prop usage
     this.handleNameUpdate = this.handleNameUpdate.bind(this);
+    this.handleTypeChoice = this.handleTypeChoice.bind(this);
+    this.handleBuildABot  = this.handleBuildABot.bind(this);
   };
 
-  handleNameUpdate() { // Update state as a user enters text into the robot name field
-    console.log('hello');
+  handleNameUpdate(event) { // Update state as a user enters text into the robot name field
+    const roboName = event.target.value;
+    this.setState({roboName : roboName});
   };
 
-  handleBuildRobot() {
+  handleTypeChoice(event) {
+    const roboType = event.target.value;
+    this.setState({roboType : roboType});
+  }
 
+  handleBuildABot() {
+    console.log('click!');
   }
 
   render() {
@@ -38,6 +47,8 @@ class App extends React.Component {
             <Row>
               <RobotBuilder 
                 handleNameUpdate={this.handleNameUpdate}
+                handleTypeChoice={this.handleTypeChoice}
+                handleBuildABot={this.handleBuildABot}
                 data={data}
               />
             </Row>
