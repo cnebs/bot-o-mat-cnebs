@@ -1,19 +1,21 @@
-import React        from 'react';
-import data         from './assets/data.js';
-import RobotBuilder from './components/RobotBuilder.jsx';
-import Interface    from './components/Interface.jsx';
-import Container    from 'react-bootstrap/Container';
-import Col          from 'react-bootstrap/Col';
-import Row          from 'react-bootstrap/Row';
+import React         from 'react';
+import data          from './assets/data.js';
+import RobotBuilder  from './components/RobotBuilder.jsx';
+import Interface     from './components/Interface.jsx';
+import Container     from 'react-bootstrap/Container';
+import Col           from 'react-bootstrap/Col';
+import Row           from 'react-bootstrap/Row';
+import getFiveRandom from './utils/getFiveRandom';
 
 
 class App extends React.Component {
   constructor(props) {
     super(props);
       this.state = {
-        roboName: 'default Name',
-        roboType: 'Bipedal',
-        build: false
+        roboName : 'default Name',
+        roboType : '',
+        build    : false,
+        tasks    : []
      };
 
     // bind our helpers to this context for prop usage
@@ -30,14 +32,20 @@ class App extends React.Component {
   handleTypeChoice(event) {
     const roboType = event.target.value;
     this.setState({roboType : roboType});
-  }
+  };
 
   handleBuildABot() {
-    console.log('click!');
-  }
+    const tasks = data.tasks
+    const fiveRandomTasks = getFiveRandom(tasks);
+    if (this.state.roboName === '' || this.state.roboType === '') {
+      alert('Please give your poor robot a name & type!')
+    } else {
+    this.setState({tasks : fiveRandomTasks});
+    }
+  };
 
   render() {
-    const { roboName, roboType } = this.state; // destructure our state to be easily passed down as props
+    const { roboName, roboType, tasks } = this.state; // destructure our state to be easily passed down as props
 
     return(
       <div className="App">
@@ -53,10 +61,13 @@ class App extends React.Component {
               />
             </Row>
             <Row>
-              <Interface 
+              {this.state.tasks.length ? <Interface 
                 roboName={roboName}
                 roboType={roboType}
-              />
+                tasks={tasks}
+              /> :
+              <></>}
+              
             </Row>
           </Col>
           <Col md={4}></Col>
@@ -64,6 +75,6 @@ class App extends React.Component {
       </div>
     );
   };
-}
+};
 
 export default App;
