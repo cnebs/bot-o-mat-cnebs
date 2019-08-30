@@ -7,18 +7,18 @@ const TypeSelector = props => {
   
   return (
     <Form.Group controlId="roboForm.typeInput">
-    <Form.Label>Robot Type</Form.Label>
-    <Form.Control 
-      as="select"
-      onChange={props.handleTypeChoice}
-    >
-      {
-        // Map over array of keys from object; 
-        // For each object key, search types object for its value string then build an option tag with the string...
-        typesArr.map( (type, i) => <option key={i}>{types[typesArr[i]]}</option>)
-      }
-    </Form.Control>
-  </Form.Group>
+      <Form.Label>Robot Type</Form.Label>
+      <Form.Control 
+        as="select"
+        onChange={props.handleTypeChoice}
+      >
+       {
+          // Map over array of keys from object; 
+          // For each object key, search types object for its value string then build an option tag with the string...
+          typesArr.map( (type, i) => <option key={i}>{types[typesArr[i]]}</option>)
+        }
+      </Form.Control>
+    </Form.Group>
   )
 }
 

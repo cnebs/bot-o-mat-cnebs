@@ -1,6 +1,6 @@
-import React from 'react';
+import React     from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
-import Button from 'react-bootstrap/Button';
+import Button    from 'react-bootstrap/Button';
 
 const Tasks = props => {
   return (

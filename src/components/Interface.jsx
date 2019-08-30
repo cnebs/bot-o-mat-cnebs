@@ -1,7 +1,7 @@
 import React from 'react';
 import Tasks from './Tasks.jsx';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
+import Col   from 'react-bootstrap/Col';
+import Row   from 'react-bootstrap/Row';
 
 const Interface = props => {
   return (

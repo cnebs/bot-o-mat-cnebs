@@ -10,7 +10,6 @@ const RobotBuilder = props => {
   return (
     // return a form with the NameSelector and TypeSelector components, then a submit button
     <Form>
-
       <NameSelector 
         handleNameUpdate={handleNameUpdate}
       />
@@ -19,12 +18,11 @@ const RobotBuilder = props => {
         data={props.data}
       />
 
-    <Button 
-      variant="primary" 
-      onClick={handleBuildABot /*updates state with tasks*/}>
-    Build a Bot!
-    </Button>
-
+      <Button 
+        variant="primary" 
+        onClick={handleBuildABot /* updates state with tasks */}>
+        Build a Bot!
+      </Button>
     </Form>
   )
 }

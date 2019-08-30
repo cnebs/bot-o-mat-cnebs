@@ -11,14 +11,14 @@ import getFiveRandom from './utils/getFiveRandom';
 class App extends React.Component {
   constructor(props) {
     super(props);
-      this.state = {
+      this.state = { 
+        robots : [], // Todo: Build robots state to hold array of robot objects, each with name, type, and tasks
         roboName : 'default Name',
         roboType : '',
-        build    : false,
         tasks    : []
      };
 
-    // bind our helpers to this context for prop usage
+    // bind our handlers to this context for prop usage
     this.handleNameUpdate = this.handleNameUpdate.bind(this);
     this.handleTypeChoice = this.handleTypeChoice.bind(this);
     this.handleBuildABot  = this.handleBuildABot.bind(this);
@@ -29,19 +29,28 @@ class App extends React.Component {
     this.setState({roboName : roboName});
   };
 
-  handleTypeChoice(event) {
+  handleTypeChoice(event) { // Update state as a user chooses a robot type from the select field
     const roboType = event.target.value;
     this.setState({roboType : roboType});
   };
 
-  handleBuildABot() {
+  handleBuildABot() { // Generate a list of 5 random tasks from the data; if user has completed the form, generate the task list
     const tasks = data.tasks
     const fiveRandomTasks = getFiveRandom(tasks);
     if (this.state.roboName === '' || this.state.roboType === '') {
-      alert('Please give your poor robot a name & type!')
+      alert('Please give your poor robot a name & type!');
     } else {
-    this.setState({tasks : fiveRandomTasks});
+      this.setState({tasks : fiveRandomTasks});
+      const robots = this.state.robots;
+      const robot = {};
+      robot.roboName = this.state.roboName;
+      robot.roboType = this.state.roboType;
+      robot.tasks = fiveRandomTasks;
+      robots.push(robot);
+      this.setState({robots : robots});
     }
+    
+
   };
 
   render() {
@@ -61,7 +70,9 @@ class App extends React.Component {
               />
             </Row>
             <Row>
-              {this.state.tasks.length ? <Interface 
+              {/* Conditionally render the list of tasks as <Interface /> if 5 tasks have been generated (means inputs are satisfied) */}
+              {this.state.tasks.length ? 
+              <Interface 
                 roboName={roboName}
                 roboType={roboType}
                 tasks={tasks}
