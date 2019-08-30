@@ -4,14 +4,21 @@ import Col   from 'react-bootstrap/Col';
 import Row   from 'react-bootstrap/Row';
 
 const Interface = props => {
+
+  const { robots } = props; // deconstruct props for ease of access/use
+
   return (
     <Col>
-      <Row>
-        {props.roboName} the {props.roboType}'s Tasks:
-      </Row>
-      <Row>
-        <Tasks tasks={props.tasks} roboName={props.roboName}/>
-      </Row>
+      {robots.map( robot => (
+        <Col>
+          <Row>
+            {robot.roboName} the {robot.roboType}'s Tasks:
+          </Row>
+          <Row>
+            <Tasks tasks={robot.tasks} roboName={robot.roboName} />
+          </Row>
+        </Col>
+      ))}
     </Col>
   )
 }

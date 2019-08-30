@@ -12,10 +12,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
       this.state = { 
-        robots : [], // Todo: Build robots state to hold array of robot objects, each with name, type, and tasks
-        roboName : 'default Name',
-        roboType : '',
-        tasks    : []
+        robots   : [], // Todo: Build robots state to hold array of robot objects, each with name, type, and tasks
+        roboName : '',
+        roboType : ''
      };
 
     // bind our handlers to this context for prop usage
@@ -24,7 +23,7 @@ class App extends React.Component {
     this.handleBuildABot  = this.handleBuildABot.bind(this);
   };
 
-  handleNameUpdate(event) { // Update state as a user enters text into the robot name field
+  handleNameUpdate(event) { // Update state as a user enters text into the robot text field
     const roboName = event.target.value;
     this.setState({roboName : roboName});
   };
@@ -34,27 +33,26 @@ class App extends React.Component {
     this.setState({roboType : roboType});
   };
 
-  handleBuildABot() { // Generate a list of 5 random tasks from the data; if user has completed the form, generate the task list
+  handleBuildABot() { // Generate a list of 5 random tasks from assets/data.js; form is satisfied, build a robot into state
     const tasks = data.tasks
     const fiveRandomTasks = getFiveRandom(tasks);
+
     if (this.state.roboName === '' || this.state.roboType === '') {
       alert('Please give your poor robot a name & type!');
+
     } else {
-      this.setState({tasks : fiveRandomTasks});
-      const robots = this.state.robots;
-      const robot = {}; // Build a new robot object, then set its properties before adding it into the state of robots
+      const robots = this.state.robots; // clone robots state to modify it before using this var to reset state
+      const robot = {}; // Build a new robot object, then set its properties before adding it into the [robots] state
         robot.roboName = this.state.roboName;
         robot.roboType = this.state.roboType;
         robot.tasks    = fiveRandomTasks;
       robots.push(robot);
       this.setState({robots : robots});
-    }
-    
-
+    };
   };
 
   render() {
-    const { roboName, roboType, tasks } = this.state; // destructure our state to be easily passed down as props
+    const { robots } = this.state; // destructure our state to be easily passed down as props
 
     return(
       <div className="App">
@@ -62,7 +60,7 @@ class App extends React.Component {
           <Col md={4}></Col>
           <Col md={4}>
             <Row>
-              <RobotBuilder 
+              <RobotBuilder // robot building user interface takes handlers and file data
                 handleNameUpdate={this.handleNameUpdate}
                 handleTypeChoice={this.handleTypeChoice}
                 handleBuildABot={this.handleBuildABot}
@@ -70,15 +68,12 @@ class App extends React.Component {
               />
             </Row>
             <Row>
-              {/* Conditionally render the list of tasks as <Interface /> if 5 tasks have been generated (means inputs are satisfied) */}
-              {this.state.tasks.length ? 
+              {/* Conditionally render each robot's list of tasks if at least 1 robot exists in the state */}
+              {robots.length ? 
               <Interface 
-                roboName={roboName}
-                roboType={roboType}
-                tasks={tasks}
+                robots={robots}
               /> :
               <></>}
-              
             </Row>
           </Col>
           <Col md={4}></Col>

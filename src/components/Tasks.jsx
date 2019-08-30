@@ -13,7 +13,7 @@ const Tasks = props => {
           </ListGroup.Item>
           <Button 
             variant="primary" >
-            Make {props.roboName} do it!
+            Make {props.roboName} {task.description}!
           </Button>
           </>
         )
