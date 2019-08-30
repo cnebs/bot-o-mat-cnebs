@@ -1,26 +1,86 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React         from 'react';
+import data          from './assets/data.js';
+import RobotBuilder  from './components/RobotBuilder.jsx';
+import Interface     from './components/Interface.jsx';
+import Container     from 'react-bootstrap/Container';
+import Col           from 'react-bootstrap/Col';
+import Row           from 'react-bootstrap/Row';
+import getFiveRandom from './utils/getFiveRandom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+      this.state = { 
+        robots   : [], // Todo: Build robots state to hold array of robot objects, each with name, type, and tasks
+        roboName : '',
+        roboType : ''
+     };
+
+    // bind our handlers to this context for prop usage
+    this.handleNameUpdate = this.handleNameUpdate.bind(this);
+    this.handleTypeChoice = this.handleTypeChoice.bind(this);
+    this.handleBuildABot  = this.handleBuildABot.bind(this);
+  };
+
+  handleNameUpdate(event) { // Update state as a user enters text into the robot text field
+    const roboName = event.target.value;
+    this.setState({roboName : roboName});
+  };
+
+  handleTypeChoice(event) { // Update state as a user chooses a robot type from the select field
+    const roboType = event.target.value;
+    this.setState({roboType : roboType});
+  };
+
+  handleBuildABot() { // Generate a list of 5 random tasks from assets/data.js; form is satisfied, build a robot into state
+    const tasks = data.tasks
+    const fiveRandomTasks = getFiveRandom(tasks);
+
+    if (this.state.roboName === '' || this.state.roboType === '') {
+      alert('Please give your poor robot a name & type!');
+
+    } else {
+      const robots = this.state.robots; // clone robots state to modify it before using this var to reset state
+      const robot = {}; // Build a new robot object, then set its properties before adding it into the [robots] state
+        robot.roboName = this.state.roboName;
+        robot.roboType = this.state.roboType;
+        robot.tasks    = fiveRandomTasks;
+      robots.push(robot);
+      this.setState({robots : robots});
+    };
+  };
+
+  render() {
+    const { robots } = this.state; // destructure our state to be easily passed down as props
+
+    return(
+      <div className="App">
+        <Container>
+          <Col md={4}></Col>
+          <Col md={4}>
+            <Row>
+              <RobotBuilder // robot building user interface takes handlers and file data
+                handleNameUpdate={this.handleNameUpdate}
+                handleTypeChoice={this.handleTypeChoice}
+                handleBuildABot={this.handleBuildABot}
+                data={data}
+              />
+            </Row>
+            <Row>
+              {/* Conditionally render each robot's list of tasks if at least 1 robot exists in the state */}
+              {robots.length ? 
+              <Interface 
+                robots={robots}
+              /> :
+              <></>}
+            </Row>
+          </Col>
+          <Col md={4}></Col>
+        </Container>
+      </div>
+    );
+  };
+};
 
 export default App;
