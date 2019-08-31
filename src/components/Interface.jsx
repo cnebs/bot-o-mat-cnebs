@@ -5,21 +5,23 @@ import Row   from 'react-bootstrap/Row';
 
 const Interface = props => {
 
-  const { robots } = props; // deconstruct props for ease of access/use
+  const { robots } = props; // deconstruct props for ease of visibility/use
 
   return (
-    <Col>
-      {robots.map( robot => (
-        <Col>
-          <Row>
-            {robot.roboName} the {robot.roboType}'s Tasks:
-          </Row>
-          <Row>
-            <Tasks tasks={robot.tasks} roboName={robot.roboName} />
-          </Row>
-        </Col>
-      ))}
-    </Col>
+    <>
+      { // For each robot in the robots state, we will generate a header + tasklist via the Tasks component
+        robots.map( robot => (
+          <Col>
+            <Row>
+              {robot.roboName} the {robot.roboType}'s Tasks:
+            </Row>
+            <Row>
+              <Tasks tasks={robot.tasks} roboName={robot.roboName} />
+            </Row>
+          </Col>
+        ))
+      }
+    </>
   )
 }
 
