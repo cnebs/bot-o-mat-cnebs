@@ -11,9 +11,10 @@ class App extends React.Component {
   constructor(props) {
     super(props);
       this.state = { 
-        robots   : [],
-        roboName : '',
-        roboType : ''
+        robots    : [],
+        roboName  : '',
+        roboType  : '',
+        completing: false
      };
 
     // bind our handlers to this context for prop usage
@@ -51,14 +52,24 @@ class App extends React.Component {
     };
   };
 
-  handleDoTask(task) {
-    console.log(task);
+  handleDoTask(task, currentRobot, currentTask) {
+    this.setState({completing: true});
+    // Clone robots state, access clicked task object & set completing to true for conditional rendering, update state
+    let robots = this.state.robots;
+    let currentTasks = robots[currentRobot].tasks;
+    robots[currentRobot].tasks[currentTask].completing = true;
+    this.setState({robots: robots});
     
-
-  }
+    // After ms specified in current task object eta property, remove task from robot clone and update state from clone
+    setTimeout(() => {
+      currentTasks.splice(currentTask, 1);
+      this.setState({robots: robots});
+      this.setState({completing: false});
+    }, task.eta); 
+  };
 
   render() {
-    const { robots } = this.state; // destructure our state to be easily passed down as props
+    const { robots, completing } = this.state; // destructure our state to be easily passed down as props
 
     /* 
     React-Bootstrap follows a similar grid pattern to bootstrap
@@ -93,6 +104,7 @@ class App extends React.Component {
                 {robots.length ? 
                 <Interface 
                   robots={robots}
+                  completing={completing}
                   handleDoTask={this.handleDoTask}
                 /> :
                 <></>}

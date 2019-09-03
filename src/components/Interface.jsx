@@ -6,7 +6,7 @@ import Card  from 'react-bootstrap/Card'
 
 const Interface = props => {
 
-  const { robots, handleDoTask } = props; // deconstruct props for ease of visibility/use
+  const { robots, completing, handleDoTask } = props; // deconstruct props for ease of visibility/use
 
   return (
     <>
@@ -21,8 +21,9 @@ const Interface = props => {
               <Col>
                 <Row>
                   <Tasks 
-                    tasks={robot.tasks}
-                    roboName={robot.roboName} 
+                    currentRobot={i}
+                    tasks={robot.tasks} 
+                    completing={completing}
                     handleDoTask={handleDoTask}
                   />
                 </Row>
