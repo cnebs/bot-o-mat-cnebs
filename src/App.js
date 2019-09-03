@@ -20,6 +20,7 @@ class App extends React.Component {
     this.handleNameUpdate = this.handleNameUpdate.bind(this);
     this.handleTypeChoice = this.handleTypeChoice.bind(this);
     this.handleBuildABot  = this.handleBuildABot.bind(this);
+    this.handleDoTask     = this.handleDoTask.bind(this);
   };
 
   handleNameUpdate(event) { // Update state as a user enters text into the robot text field
@@ -50,8 +51,18 @@ class App extends React.Component {
     };
   };
 
+  handleDoTask(task) {
+    console.log(task);
+    
+
+  }
+
   render() {
     const { robots } = this.state; // destructure our state to be easily passed down as props
+
+    /* 
+    React-Bootstrap follows a similar grid pattern to bootstrap
+    */
 
     return(
       <div className="App">
@@ -82,6 +93,7 @@ class App extends React.Component {
                 {robots.length ? 
                 <Interface 
                   robots={robots}
+                  handleDoTask={this.handleDoTask}
                 /> :
                 <></>}
               </Row>
