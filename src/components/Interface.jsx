@@ -11,7 +11,7 @@ const Interface = props => {
   return (
     <>
       { // For each robot in the robots state, we will generate a header + tasklist via the Tasks component
-        robots.map( (robot, i) => ( // Todo: Convert to using a card interface
+        robots.map( (robot, i) => (
           <Card className="card" key={i}> {/*A key will allow us to uniquely identify each card by its mapping index*/}
             <Card.Body>
               <Card.Title>
@@ -21,7 +21,7 @@ const Interface = props => {
               <Col>
                 <Row>
                   <Tasks 
-                    tasks={robot.tasks} 
+                    tasks={robot.tasks}
                     roboName={robot.roboName} 
                     handleDoTask={handleDoTask}
                   />
