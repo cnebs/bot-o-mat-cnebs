@@ -7,12 +7,11 @@ import Col           from 'react-bootstrap/Col';
 import Row           from 'react-bootstrap/Row';
 import getFiveRandom from './utils/getFiveRandom';
 
-
 class App extends React.Component {
   constructor(props) {
     super(props);
       this.state = { 
-        robots   : [], // Todo: Build robots state to hold array of robot objects, each with name, type, and tasks
+        robots   : [],
         roboName : '',
         roboType : ''
      };
@@ -21,6 +20,7 @@ class App extends React.Component {
     this.handleNameUpdate = this.handleNameUpdate.bind(this);
     this.handleTypeChoice = this.handleTypeChoice.bind(this);
     this.handleBuildABot  = this.handleBuildABot.bind(this);
+    this.handleDoTask     = this.handleDoTask.bind(this);
   };
 
   handleNameUpdate(event) { // Update state as a user enters text into the robot text field
@@ -42,7 +42,7 @@ class App extends React.Component {
 
     } else {
       const robots = this.state.robots; // clone robots state to modify it before using this var to reset state
-      const robot = {}; // Build a new robot object, then set its properties before adding it into the [robots] state
+      const robot = {}; // Build a new robot object, then set its properties before adding it into our [robots] state
         robot.roboName = this.state.roboName;
         robot.roboType = this.state.roboType;
         robot.tasks    = fiveRandomTasks;
@@ -51,32 +51,55 @@ class App extends React.Component {
     };
   };
 
+  handleDoTask(task) {
+    console.log(task);
+    
+
+  }
+
   render() {
     const { robots } = this.state; // destructure our state to be easily passed down as props
+
+    /* 
+    React-Bootstrap follows a similar grid pattern to bootstrap
+    */
 
     return(
       <div className="App">
         <Container>
-          <Col md={4}></Col>
-          <Col md={4}>
-            <Row>
+          <Row>
+            <Col></Col>
+            <Col><h1>Bot-O-Mat!</h1></Col>
+            <Col></Col>
+          </Row>
+          <Row>
+            <Col></Col>
+            <Col>
               <RobotBuilder // robot building user interface takes handlers and file data
                 handleNameUpdate={this.handleNameUpdate}
                 handleTypeChoice={this.handleTypeChoice}
                 handleBuildABot={this.handleBuildABot}
                 data={data}
               />
-            </Row>
-            <Row>
-              {/* Conditionally render each robot's list of tasks if at least 1 robot exists in the state */}
-              {robots.length ? 
-              <Interface 
-                robots={robots}
-              /> :
-              <></>}
-            </Row>
-          </Col>
-          <Col md={4}></Col>
+            </Col>
+            <Col></Col>
+          </Row>
+          <Row>
+            <Col></Col>
+            <Col md="auto">
+              <br></br>
+              <Row>
+                {/* Conditionally render each robot's list of tasks if at least 1 robot exists in the state */}
+                {robots.length ? 
+                <Interface 
+                  robots={robots}
+                  handleDoTask={this.handleDoTask}
+                /> :
+                <></>}
+              </Row>
+            </Col>
+            <Col></Col>
+          </Row>
         </Container>
       </div>
     );
