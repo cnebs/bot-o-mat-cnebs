@@ -2,17 +2,25 @@ import React     from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
 
 const Tasks = props => {
+
+  const { currentRobot, tasks, handleDoTask } = props;
+
   return (
     <ListGroup variant="flush">
       { // For each task in the datafile passed from App, we will generate a react-bootstrap actionable list
         // Each list item should have an interactive task, & dynamically rendering time to complete
-        props.tasks.map( (task, i) => {
+        tasks.map( (task, currentTask) => {
+          // let currentTask = i;
           return (
             <ListGroup.Item
-              key={i}
-              action onClick={() => (props.handleDoTask(task))}
+              key={currentTask}
+              action onClick={() => (handleDoTask(task, currentRobot, currentTask))}
             >
-              {`${task.description} | ETA: ${task.eta}ms`}
+              {
+                !task.completing ?
+                  `${task.description} (${task.eta}ms)` :
+                  `Working!!!`
+              }
             </ListGroup.Item>
           )
         })

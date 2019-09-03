@@ -51,11 +51,19 @@ class App extends React.Component {
     };
   };
 
-  handleDoTask(task) {
-    console.log(task);
+  handleDoTask(task, currentRobot, currentTask) {
+    // Clone robots state, access clicked task object & set completing to true for conditional rendering, update state
+    let robots = this.state.robots;
+    let currentTasks = robots[currentRobot].tasks;
+    robots[currentRobot].tasks[currentTask].completing = true;
+    this.setState({robots: robots});
     
-
-  }
+    // After ms specified in current task object eta property, remove task from robot clone and update state from clone
+    setTimeout(() => {
+      currentTasks.splice(currentTask, 1);
+      this.setState({robots: robots})
+    }, task.eta); 
+  };
 
   render() {
     const { robots } = this.state; // destructure our state to be easily passed down as props

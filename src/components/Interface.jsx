@@ -21,8 +21,8 @@ const Interface = props => {
               <Col>
                 <Row>
                   <Tasks 
+                    currentRobot={i}
                     tasks={robot.tasks} 
-                    roboName={robot.roboName} 
                     handleDoTask={handleDoTask}
                   />
                 </Row>
