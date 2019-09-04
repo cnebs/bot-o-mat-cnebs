@@ -18,10 +18,10 @@ const roboClone  = robots.slice(0); // Create a clone of robots prop to use & so
       <tbody>
         {
           robots.length ?  // If a robot hasn't been made: placeholder row; else, sort & render dynamically
-            roboClone.sort((a, b) => (b.tasksCompleted - a.tasksCompleted)) // sort each robot clone by tasks completed
+            roboClone.sort((a, b) => (b.tasksCompleted - a.tasksCompleted)) // sort each roboClone by tasks completed (high to low)
             .map((robot, i) => {
               let placement = i+1;
-              return(
+              return( // For each roboClone, return a leaderboard row
                 <tr key={i}>
                   <td>{placement}</td>
                   <td>{robot.roboName}</td>

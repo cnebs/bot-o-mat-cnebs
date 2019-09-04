@@ -12,9 +12,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
       this.state = { 
-        robots            : [],
-        roboName          : '',
-        roboType          : ''
+        robots   : [],
+        roboName : '',
+        roboType : ''
      };
 
     // bind our handlers to this context for prop usage
