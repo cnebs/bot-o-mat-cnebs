@@ -1,7 +1,8 @@
 {
   "name": "bot-o-mat-cnebs",
   "version": "0.1.0",
-  "homepages": "http://cnebs.github.io/bot-o-mat-cnebs",
+  "author": "Charles Neblett",
+  "homepage": "https://charlesneblett.com/bot-o-mat-cnebs",
   "private": true,
   "dependencies": {
     "bootstrap": "^4.3.1",
