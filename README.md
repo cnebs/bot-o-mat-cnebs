@@ -1,68 +1,101 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# BOT-O-MAT
+Thanks for looking over my Bot-O-Mat!
 
-## Available Scripts
+You can find a live demo on my website at: https://charlesneblett.com/bot-o-mat-cnebs
 
-In the project directory, you can run:
+I chose to use React.js on Javascript as my library and language, as I enjoy front-end development and building graphical interfaces. I also find React to be more readable. I used React-Bootstrap to structure and style the elements, and tried to keep the design clean.
 
-### `npm start`
+### How to install & run Bot-O-Mat:
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. First install Node from: https://nodejs.org/en/download/ . 
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+2. Clone or download the repository onto your local machine.
 
-### `npm test`
+3. Enter the main directory:  `$ cd bot-o-mat-cnebs` , open with your editor of choice.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+4. Use `$ npm install` . This script will reference the dependencies in `package.json` to download the packages that React needs to run this app.
 
-### `npm run build`
+4. Use `$ npm start` . This script will launch a React development environment and a live server.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+5. The app will load onto your browser. Input a bot name and type; click Build-A-Bot! (If you're missing an input, you'll get an alert!).
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+6. You'll notice the leaderboard gains a row for your new Bot. Click one of the bot's tasks to get it working. Only one task can be done at a time per Bot!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+7. After the task is finished, you'll notice the leaderboard has updated with that Bot's tasks completed. Try building more bots; as they complete more tasks, the leaderboard will adjust!
 
-### `npm run eject`
+Have fun!
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+-Charles
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Coding Challenge Guidelines
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Collect a name and robot type from user.
+- Instantiate a Robot of the type provided by the user with the name provided by the user
+  - for example: Bipedal, Larry
+- Set up methods on Robot to complete tasks from the provided list
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Robot
+Robot completes tasks and removes them from the list when they are done (i.e. enough time has passed since starting the task).
 
-## Learn More
+## Tasks
+Tasks have a description and an estimated time to complete.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+[
+  {
+    description: 'do the dishes',
+    eta: 1000,
+  },{
+    description: 'sweep the house',
+    eta: 3000,
+  },{
+    description: 'do the laundry',
+    eta: 10000,
+  },{
+    description: 'take out the recycling',
+    eta: 4000,
+  },{
+    description: 'make a sammich',
+    eta: 7000,
+  },{
+    description: 'mow the lawn',
+    eta: 20000,
+  },{
+    description: 'rake the leaves',
+    eta: 18000,
+  },{
+    description: 'give the dog a bath',
+    eta: 14500,
+  },{
+    description: 'bake some cookies',
+    eta: 8000,
+  },{
+    description: 'wash the car',
+    eta: 20000,
+  },
+]
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Types
+```
+{ 
+  UNIPEDAL: 'Unipedal',
+  BIPEDAL: 'Bipedal',
+  QUADRUPEDAL: 'Quadrupedal',
+  ARACHNID: 'Arachnid',
+  RADIAL: 'Radial',
+  AERONAUTICAL: 'Aeronautical'
+}
+```
 
-### Code Splitting
+## Features to add once the core functionality is complete
+Be creative and have fun! Use this list or create your own features.
+- Allow users to create multiple robots at one time
+- Create a leaderboard for tasks completed by each Robot
+- Create tasks specific for each robot type, this could work in conjunction with the leaderboard. For e.g. robots that are assigned tasks that their type can’t perform won’t get “credit” for finishing the task.
+- Add persistance for tasks, bots and leaderboard stats
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
 
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## Authors
+- Scott Hoffman <https://github.com/scottshane>
+- Olivia Osby <https://github.com/oosby>
