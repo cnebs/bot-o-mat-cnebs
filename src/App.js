@@ -54,9 +54,11 @@ class App extends React.Component {
   };
 
   handleDoTask(task, currentRobot, currentTask) {
-    // Clone robots state, access clicked task object & set completing to true for conditional rendering, update state
+    // Clone robots state
     let robots = this.state.robots;
     let currentTasks = robots[currentRobot].tasks;
+
+    // Access clicked task object & set completing to true for conditional rendering, update state
     robots[currentRobot].tasks[currentTask].completing = true;
     robots[currentRobot].isWorking = true;
     this.setState({robots: robots});
@@ -70,23 +72,28 @@ class App extends React.Component {
   };
 
   render() {
-    const { robots, completing } = this.state; // destructure our state to be easily passed down as props
+    const { robots } = this.state; // destructure our state to be easily passed down as props
 
     /* 
-    React-Bootstrap follows a similar grid pattern to bootstrap
+    React-Bootstrap follows a similar grid pattern to Bootstrap
     */
 
     return(
       <div className="App">
         <Container>
+          <br />
           <Row>
             <Col></Col>
-            <Col><h1>Bot-O-Mat!</h1></Col>
+            <Col md="auto"><h1>Bot-O-Mat</h1></Col>
             <Col></Col>
           </Row>
+
+          <hr />
+          <br />
+
           <Row>
-            <Col></Col>
-            <Col>
+            <Col md="2"></Col>
+            <Col md="4">
               <RobotBuilder // robot building user interface takes handlers and file data
                 robots={robots}
                 handleNameUpdate={this.handleNameUpdate}
@@ -95,14 +102,21 @@ class App extends React.Component {
                 data={data}
               />
             </Col>
-            <Col>
-              <Leaderboard
-                data={data}
-                robots={robots}
-              />
+            <Col md="4">
+              <Row>
+                <Col></Col>
+                <Col><h5>Leaderboard</h5></Col>
+                <Col></Col>
+              </Row>
+              <Row>
+                <Leaderboard // Leaderboard references robots array from state
+                  robots={robots}
+                />
+              </Row>
             </Col>
-            <Col></Col>
+            <Col md="2"></Col>
           </Row>
+
           <Row>
             <Col></Col>
             <Col md="auto">
@@ -110,9 +124,8 @@ class App extends React.Component {
               <Row>
                 {/* Conditionally render each robot's list of tasks if at least 1 robot exists in the state */}
                 {robots.length ? 
-                <Interface 
+                <Interface  // Interface dynamically renders tasklist cards for each robot passed from state
                   robots={robots}
-                  completing={completing}
                   handleDoTask={this.handleDoTask}
                 /> :
                 <></>}

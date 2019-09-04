@@ -9,7 +9,7 @@ const Tasks = props => {
     <ListGroup variant="flush">
       { // For each task in the datafile passed from App, we will generate a react-bootstrap actionable list
         // Each list item should have an interactive task, & dynamically rendering time to complete
-        tasks.map( (task, taskIndex) => {
+        tasks.map( (task, taskIndex ) => {
           return (
             <ListGroup.Item
               key={taskIndex}
@@ -21,8 +21,8 @@ const Tasks = props => {
             >
               {
                 !task.completing ?
-                  `${task.description} (${task.eta}ms)` :
-                  `${task.description} (${task.eta}ms) Completing...`
+                  `${task.description} (${task.eta/1000}sec)` :
+                  `${task.description} (${task.eta/1000}sec) Completing...`
               }
             </ListGroup.Item>
           )
