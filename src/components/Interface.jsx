@@ -2,7 +2,8 @@ import React from 'react';
 import Tasks from './Tasks.jsx';
 import Col   from 'react-bootstrap/Col';
 import Row   from 'react-bootstrap/Row';
-import Card  from 'react-bootstrap/Card'
+import Card  from 'react-bootstrap/Card';
+
 
 const Interface = props => {
 
@@ -12,7 +13,7 @@ const Interface = props => {
     <>
       { // For each robot in the robots state, we will build a card with a title & tasklist via Tasks component
         robots.map( (robot, i) => (
-          <Card className="card" key={i}> {/*A key will allow us to uniquely identify each card by its mapping index*/}
+          <Card className="card" key={i}> {/* A key will allow us to uniquely identify each card by its mapping index */}
             <Card.Body>
               <Card.Title>
                 {robot.roboName} the {robot.roboType}'s Tasks:

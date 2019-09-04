@@ -21,8 +21,8 @@ const Tasks = props => {
             >
               {
                 !task.completing ?
-                  `${task.description} (${task.eta/1000}sec)` :
-                  `${task.description} (${task.eta/1000}sec) Completing...`
+                  `${task.description} (${task.eta/1000} sec)` :
+                  `${task.description} (${task.eta/1000} sec) Completing...`
               }
             </ListGroup.Item>
           )

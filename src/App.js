@@ -12,9 +12,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
       this.state = { 
-        robots    : [],
-        roboName  : '',
-        roboType  : ''
+        robots            : [],
+        roboName          : '',
+        roboType          : ''
      };
 
     // bind our handlers to this context for prop usage
@@ -39,15 +39,16 @@ class App extends React.Component {
     const fiveRandomTasks = getFiveRandom(tasks);
 
     if (this.state.roboName === '' || this.state.roboType === '') {
-      alert('Please give your poor robot a name & type!');
+      alert('Please give your poor robot both a name and a type!');
 
     } else {
       const robots = this.state.robots; // clone robots state to modify it before using this var to reset state
       const robot = {}; // Build a new robot object, then set its properties before adding it into our [robots] state
-        robot.roboName  = this.state.roboName;
-        robot.roboType  = this.state.roboType;
-        robot.isWorking = false;
-        robot.tasks     = fiveRandomTasks;
+        robot.roboName       = this.state.roboName;
+        robot.roboType       = this.state.roboType;
+        robot.tasksCompleted = 0;
+        robot.isWorking      = false;
+        robot.tasks          = fiveRandomTasks;
       robots.push(robot);
       this.setState({robots : robots});
     };
@@ -67,6 +68,7 @@ class App extends React.Component {
     setTimeout(() => {
       currentTasks.splice(currentTask, 1);
       robots[currentRobot].isWorking = false;
+      robots[currentRobot].tasksCompleted++;
       this.setState({robots: robots});
     }, task.eta); 
   };
@@ -105,7 +107,7 @@ class App extends React.Component {
             <Col md="4">
               <Row>
                 <Col></Col>
-                <Col><h5>Leaderboard</h5></Col>
+                <Col md="auto"><h5>Robo-Leaderboard</h5></Col>
                 <Col></Col>
               </Row>
               <Row>
