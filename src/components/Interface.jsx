@@ -1,9 +1,9 @@
-import React from 'react';
-import Tasks from './Tasks.jsx';
-import Col   from 'react-bootstrap/Col';
-import Row   from 'react-bootstrap/Row';
-import Card  from 'react-bootstrap/Card';
-
+import React   from 'react';
+import Tasks   from './Tasks.jsx';
+import Col     from 'react-bootstrap/Col';
+import Row     from 'react-bootstrap/Row';
+import Card    from 'react-bootstrap/Card';
+import Spinner from 'react-bootstrap/Spinner';
 
 const Interface = props => {
 
@@ -19,12 +19,23 @@ const Interface = props => {
               </Card.Header>
             <Card.Body>
               <Card.Text>
-                  {robot.isWorking ? `${robot.roboName} is working...` : null}
+                  {
+                    robot.isWorking ?  // If the robot is working, add a spinner to the card, otherwise don't
+                      <Row as="span"> {/* divs can't be children of <p />s, so make these children spans */}
+                        <Col md="auto" as="span">
+                          <Card.Subtitle className="mb-2 text-muted" as="span">{`${robot.roboName} is working...`}</Card.Subtitle>
+                        </Col>
+                        <Col md="auto" as="span">
+                          <Spinner animation="border" variant="primary" as="span"/>
+                        </Col>
+                      </Row>: 
+                    null
+                  }
               </Card.Text>
             </Card.Body>
               <Col>
                 <Row>
-                  <Tasks 
+                  <Tasks  // Generate a tasklist for each robot's card
                     robot={robot}
                     currentRobot={i}
                     tasks={robot.tasks} 
