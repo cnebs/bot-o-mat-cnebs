@@ -1,5 +1,6 @@
 import React         from 'react';
 import data          from './assets/data.js';
+import logo          from './assets/logo.png';
 import RobotBuilder  from './components/RobotBuilder.jsx';
 import Leaderboard   from './components/Leaderboard.jsx';
 import Interface     from './components/Interface.jsx';
@@ -86,7 +87,12 @@ class App extends React.Component {
           <br />
           <Row>
             <Col></Col>
-            <Col md="auto"><h1>Bot-O-Mat</h1></Col>
+            <Col md="auto">
+              <Row>
+                <img src={logo} alt="" height={40} width={70} />
+                <h1>Bot-O-Mat</h1>
+              </Row>
+            </Col>
             <Col></Col>
           </Row>
 
