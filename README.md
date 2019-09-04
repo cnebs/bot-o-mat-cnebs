@@ -1,11 +1,33 @@
 # BOT-O-MAT
-Use any language to complete this challenge. The implementation is up to you: it can be a command-line application or have a graphical interface.
+Thanks for looking over my Bot-O-Mat!
 
-Your application should collect a name and robot type from the types we list below. For each, it should create a Robot of the type the user chooses, e.g. Larry, Bipedal. 
+You can find a live demo on my website at: https://charlesneblett.com/bot-o-mat-cnebs
 
-Given the list of tasks below, your application should then assign the Robot a set of five tasks, all of which complete after a duration that we show in milliseconds. 
+I chose to use React.js on Javascript as my library and language, as I enjoy front-end development and building graphical interfaces. I also find React to be more readable. I used React-Bootstrap to structure and style the elements, and tried to keep the design clean.
 
+### How to install & run Bot-O-Mat:
 
+1. First install Node from: https://nodejs.org/en/download/ . 
+
+2. Clone or download the repository onto your local machine.
+
+3. Enter the main directory:  `$ cd bot-o-mat-cnebs` , open with your editor of choice.
+
+4. Use `$ npm install` . This script will reference the dependencies in `package.json` to download the packages that React needs to run this app.
+
+4. Use `$ npm start` . This script will launch a React development environment and a live server.
+
+5. The app will load onto your browser. Input a bot name and type; click Build-A-Bot! (If you're missing an input, you'll get an alert!).
+
+6. You'll notice the leaderboard gains a row for your new Bot. Click one of the bot's tasks to get it working. Only one task can be done at a time per Bot!
+
+7. After the task is finished, you'll notice the leaderboard has updated with that Bot's tasks completed. Try building more bots; as they complete more tasks, the leaderboard will adjust!
+
+Have fun!
+
+-Charles
+
+# Coding Challenge Guidelines
 
 - Collect a name and robot type from user.
 - Instantiate a Robot of the type provided by the user with the name provided by the user
