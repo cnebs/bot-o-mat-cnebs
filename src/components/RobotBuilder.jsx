@@ -5,7 +5,7 @@ import Form         from 'react-bootstrap/Form';
 import Button       from 'react-bootstrap/Button';
 
 const RobotBuilder = props => {
-  const { handleNameUpdate, handleBuildABot, handleTypeChoice } = props; // destructure props for ease of visibility/use
+  const { robots, handleNameUpdate, handleBuildABot, handleTypeChoice } = props; // destructure props for ease of visibility/use
 
   return (
     // return a form with the NameSelector and TypeSelector components, then a submit button
@@ -21,7 +21,7 @@ const RobotBuilder = props => {
       <Button 
         variant="primary" 
         onClick={handleBuildABot /* updates state with tasks */}>
-        Build a Bot!
+        {robots.length ? `Build another Bot!` : `Build a Bot!`}
       </Button>
     </Form>
   )
