@@ -119,6 +119,9 @@ class App extends React.Component {
             <Col md="2"></Col>
           </Row>
 
+          <br />
+          {robots.length ? <hr /> : <></>}
+
           <Row>
             <Col></Col>
             <Col md="auto">

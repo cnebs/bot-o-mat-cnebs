@@ -2,8 +2,8 @@ import React from 'react';
 import Table from 'react-bootstrap/Table';
 
 const Leaderboard = props => {
-const { robots } = props;
-const roboClone  = robots;
+const { robots } = props; // destructure
+const roboClone  = robots.slice(0); // Create a clone of robots prop to use & sort based on tasks completed
 
   return ( // Build a table that dynamically renders rows for each Robot, updating order as tasks finish
     <Table striped bordered hover size="sm"> 
@@ -17,10 +17,9 @@ const roboClone  = robots;
       </thead>
       <tbody>
         {
-          robots.length ?  // If a robot hasn't been made: placementholder row, else sort & render dynamically
-            roboClone.sort((a, b) => {
-              return (a.tasksCompleted - b.tasksCompleted);
-            }).map( (robot, i) => {
+          robots.length ?  // If a robot hasn't been made: placeholder row; else, sort & render dynamically
+            roboClone.sort((a, b) => (b.tasksCompleted - a.tasksCompleted)) // sort each robot clone by tasks completed
+            .map((robot, i) => {
               let placement = i+1;
               return(
                 <tr key={i}>

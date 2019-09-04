@@ -14,10 +14,13 @@ const Interface = props => {
       { // For each robot in the robots state, we will build a card with a title & tasklist via Tasks component
         robots.map( (robot, i) => (
           <Card className="card" key={i}> {/* A key will allow us to uniquely identify each card by its mapping index */}
-            <Card.Body>
-              <Card.Title>
+              <Card.Header as="h5">
                 {robot.roboName} the {robot.roboType}'s Tasks:
-              </Card.Title>
+              </Card.Header>
+            <Card.Body>
+              <Card.Text>
+                  {robot.isWorking ? `${robot.roboName} is working...` : null}
+              </Card.Text>
             </Card.Body>
               <Col>
                 <Row>

@@ -19,11 +19,7 @@ const Tasks = props => {
                   alert(`${robot.roboName} is still working!`)
                 }}
             >
-              {
-                !task.completing ?
-                  `${task.description} (${task.eta/1000} sec)` :
-                  `${task.description} (${task.eta/1000} sec) Completing...`
-              }
+              {`${task.description} (${task.eta/1000} sec)`}
             </ListGroup.Item>
           )
         })
