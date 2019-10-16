@@ -23,7 +23,7 @@ const Interface = props => {
                     robot.isWorking ?  // If the robot is working, add a spinner to the card, otherwise don't
                       <Row as="span"> {/* divs can't be children of <p />s, so make these children spans */}
                         <Col md="auto" as="span">
-                          <Card.Subtitle className="mb-2 text-muted" as="span">{`${robot.roboName} is working...`}</Card.Subtitle>
+                          <Card.Subtitle className="mb-2 text-muted" as="span">{`${robot.roboName} is working...HARD`}</Card.Subtitle>
                         </Col>
                         <Col md="auto" as="span">
                           <Spinner animation="border" variant="primary" as="span"/>
